@@ -21,9 +21,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static com.waes.jsonCompare.constants.Constants.JSONS_ARE_NOT_IN_SAME_SIZE_MESSAGE;
+import static com.waes.jsonCompare.constants.Constants.JSONS_ARE_SAME_MESSAGE;
+import static com.waes.jsonCompare.constants.Constants.TWO_JSONS_ARE_NOT_SAME_MESSAGE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -110,7 +110,7 @@ public class DiffServiceTest {
         Data data = new Data(1L, fakeJson, fakeJson);
         Mockito.doReturn(Optional.of(data)).when(repository).findById(Mockito.eq(1L));
         String result = service.getDiff(1L);
-        Assert.assertEquals(result, "Same json!");
+        Assert.assertEquals(result, JSONS_ARE_SAME_MESSAGE);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class DiffServiceTest {
         Data data = new Data(1L, fakeJson, fakeJson2);
         Mockito.doReturn(Optional.of(data)).when(repository).findById(Mockito.eq(1L));
         String result = service.getDiff(1L);
-        Assert.assertEquals(result, "Not same size!");
+        Assert.assertEquals(result, JSONS_ARE_NOT_IN_SAME_SIZE_MESSAGE);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class DiffServiceTest {
         Data data = new Data(1L, fakeJson, fakeJson2);
         Mockito.doReturn(Optional.of(data)).when(repository).findById(Mockito.eq(1L));
         String result = service.getDiff(1L);
-        Assert.assertEquals(result, "Two json is not same, the differences are at the following positions: 4");
+        Assert.assertEquals(result, TWO_JSONS_ARE_NOT_SAME_MESSAGE + "4");
     }
 
     @Test
@@ -140,6 +140,6 @@ public class DiffServiceTest {
         Data data = new Data(1L, fakeJson, fakeJson2);
         Mockito.doReturn(Optional.of(data)).when(repository).findById(Mockito.eq(1L));
         String result = service.getDiff(1L);
-        Assert.assertEquals(result, "Two json is not same, the differences are at the following positions: 4, 9");
+        Assert.assertEquals(result, TWO_JSONS_ARE_NOT_SAME_MESSAGE + "4, 9");
     }
 }

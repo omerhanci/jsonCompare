@@ -3,8 +3,11 @@ package com.waes.jsonCompare.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
+/**
+ * Entity class for application
+ * @author Omer Hanci
+ */
 @Entity
 public class Data {
 

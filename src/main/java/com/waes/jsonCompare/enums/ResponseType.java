@@ -1,5 +1,9 @@
 package com.waes.jsonCompare.enums;
 
+/**
+ * enum for response type of save function
+ * @author Omer Hanci
+ */
 public enum ResponseType {
     CREATED("Created") ,
     UPDATED("Updated") ,
